@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal__inner {
+      width: 30%;
+      padding: 30px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="switchFlag">開く</button>
+    <div class="modal" v-show="isShown">
+      <div class="modal__inner">
+        <p class="modal__text">モーダルウィンドウ</p>
+        <button @click="switchFlag">閉じる</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          flag : false,
+        }
+      },
+      computed: {
+        isShown: function () {
+          return this.flag;
+        },
+      },
+      methods: {
+        switchFlag: function () {
+          this.flag = !this.flag;
+          console.log(this.flag);
+        },
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <style>
+    .tab {
+      cursor: pointer;
+      padding: 0 20px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .active {
+      color: #fff;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <table>
+    <tr>
+      <span v-for="n in num">
+        <tab 
+          :class="{'active': isActive(n)}"
+          @click.native="update(n)">
+          {{n}}
+        </tab>
+      </span>
+    </tr>
+    <tr>
+      <td>{{content}}</td>
+    </tr>
+  </table>
+</div>
+<script>
+  Vue.component('tab', {
+    template: `<td class="tab">タブ<slot></slot></td>`,
+    },
+  );
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        num: 3,
+        content: 'コンテンツ1',
+        activeTab: 1,
+      }
+    },
+    methods: {
+      update: function(n) {
+        this.content = `コンテンツ${n}`
+        this.activeTab = n;
+      },
+      isActive: function (n) {
+        return (n === this.activeTab) ? true : false;
+      }
+    },
+  });
+</script>
+</body>
+</html>
