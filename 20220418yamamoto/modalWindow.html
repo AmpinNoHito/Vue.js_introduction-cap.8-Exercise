@@ -32,7 +32,7 @@
 <body>
   <div id="app">
     <button @click="switchFlag">開く</button>
-    <div class="modal" v-show="isShown">
+    <div class="modal" v-show="isShown" @click.self="switchFlag">
       <div class="modal__inner">
         <p class="modal__text">モーダルウィンドウ</p>
         <button @click="switchFlag">閉じる</button>
